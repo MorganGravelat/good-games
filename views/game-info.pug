@@ -1,0 +1,46 @@
+extends layout
+
+block content
+    body.game-info-page
+        .game-info-body
+            .game-info-wrapper
+                .game-info-title-wrapper
+                    p.titleFont  #{game.title}
+                .game-info-image-wrapper
+                    img(src=`${game.url}`, alt=`${game.title}`)
+                .game-info-description-wrapper
+                    .game-info-dev-wrapper
+                        .game-info-p-wrapper
+                            p.game-info-developer.fontClass Developer: #{game.developer}
+                        .game-info-p-wrapper
+                            p.game-info-releaseDate.fontClass Release Date: #{game.releaseDate}
+                        .game-info-p-wrapper
+                            p.game-info-metaScore.fontClass MetaScore: #{game.metaScore}
+                    .game-info-text-wrapper
+                        p.game-info-description.fontClass #{game.description}
+                    if reviews.length > 0
+                        .game-info-review-wrapper(id="reviewWrapper")
+                            each review in reviews
+                                div(id=`review${review.id}`)
+                                    p.game-info-review-username.fontClass #{review.User.username}:
+                                    p.game-info-review-content.fontClass #{review.content}
+                                    p.game-info-review-timestamp.fontClass #{review.createdAt}
+                                    if user
+                                        if user.username === review.User.username
+                                            button(class="game-info-review-delete" id=`review${review.id}`) Delete
+                                            button(class="game-info-review-edit editDisplay" id=`review${review.id}`) Edit
+                                    .game-info-review-underline
+                    else
+                        .game-info-review-wrapper(id="reviewWrapper")
+                    div(class="review-form-wrapper")
+                        form(action="" method="post" onsubmit="event.preventDefault();")
+                            p.game-info-review-label.fontClass  Leave a review:
+                            if locals.authenticated
+                                input(type="hidden" name="_csrf" value=csrfToken)
+                                textarea(class="game-info-review-textarea" id="game-info-review-textarea" name="content" rows="4" cols="70")
+                                input(type="hidden" name="userId" value=`${user.id}`)
+                                input(type="hidden" name="gameId" value=`${game.id}`)
+                                button(class="game-info-review-submit" id=`${game.id}` type="submit") Submit Review
+                            else
+                                p Login/Signup to leave a review!
+    script(src="/javascripts/game-info.js")

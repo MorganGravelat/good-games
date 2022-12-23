@@ -1,0 +1,58 @@
+.ggLogo {
+    height: 80px;
+    z-index: 1;
+    position: relative;
+    top: 0;
+    left: 0;
+    /* border: 1px red solid; */
+}
+.ggLogo-Hover {
+    height: 80px;
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1%;
+
+    /* border: 1px green solid; */
+}
+.ggLogo-Hover:hover {
+    opacity:100%;
+    transition:opacity 0.5s;
+}
+.header {
+    display: flex;
+    background-color: rgb(40, 22, 90);
+    justify-content: space-around;
+    align-items: center;
+}
+.logoContainer {
+    display: inline-block;
+    margin: 7px 0px 7px 0;
+    justify-self: center;
+    position: relative;
+}
+.userNavButtons {
+    background-color: rgba(0, 0, 0, 0);
+    border: white 1px solid;
+    border-radius: 9px;
+    padding: 10px;
+    margin: 0px 5px 0px 5px;
+    color: white;
+}
+.userLinks {
+    display: flex;
+    transition: 0s background-color;
+    align-items: center;
+}
+.userNavButtons:hover {
+    background-color: rgba(183, 146, 218, 0.5);
+
+}
+.usernameText {
+    color: white;
+    margin-right: 20px;
+}
+.emptyDiv {
+    width: 10vw;
+}
